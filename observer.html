@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Observer View</title>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'>//JQuery </script>
+    <style>
+	label{
+		font-size:2.5rem;
+	}
+	
+	input{
+		width: 45%;
+	}
+	
+	#submitName{
+		width: 45%;
+		text-size: 2rem;
+		padding: 20px;
+		margin-top: 20px;
+	}
+
+	
+	#buttons button {
+		border: 1px solid white;
+		color: black; 
+		padding: 25px 24px;
+		text: 6rem;
+		width: 100%;
+		height: 18%;
+		display: block; /* Make the buttons appear below each other */
+		font-weight: 900;
+}
+	.input input{
+		display:block;
+		line-height: 25px;
+	}
+	</style>
+	<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+<script src="updateDB.js"></script>
+
+  </head>
+    <body>
+	<div class = "input">
+<label>User ID:</label><input id="userID" type="text" required> 
+</div>
+<br>
+<div class="input">
+<label>Student's Name:</label><input id="name" type="text"> 
+</div>
+<br>
+<div>
+	<button id="submitName" onclick=createButtons()>Submit</button>
+</div>
+<label id="Engagement"></label>
+<div id="buttons">
+
+</div>
+
+<script>
+	const engagementColours = ["light-grey", "#dd2c00",  "#ffa726", "#ffeb3b", "#b2ff59", "#64dd17"];
+	
+	function createButtons(){
+		document.getElementById("Engagement").innerHTML = "Engagement score:";
+		let position = document.getElementById("buttons");
+		for(let i = 0; i<5; i++){
+			let button = document.createElement("button");
+			button.setAttribute("id", (i+1) + "-score");
+			button.style.backgroundColor = engagementColours[i+1];
+			button.innerHTML = (i+1);
+			position.appendChild(button);
+		}
+		
+		let absentButton = document.createElement("button");
+		
+		absentButton.innerHTML = "Absent";
+		absentButton.setAttribute("id", "absentButton");
+		absentButton.style.backgroundColor = engagementColours[0];
+		position.appendChild(absentButton);
+		init();
+		removeSelect();
+	}
+	
+	function removeSelect(){
+		let selectButton = document.getElementById("submitName");
+		selectButton.style.display = "none";
+		document.getElementById("userID").disabled = true;
+		document.getElementById("name").disabled = true;
+	}
+	
+	
+</script>
+
+  </body>
+</html>

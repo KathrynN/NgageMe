@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'>//JQuery </script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="audienceSetUp.js"></script>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	
+</head>
+<body>
+    <div id ="container">
+   <div id ="header">
+        <h1>Live Engagement - Maths Year 7</h1>
+    </div>
+    <div id ="sidebar">
+
+		<div id="audienceIndicator">
+		</div>
+    </div>
+	<div id ="content">
+
+    </div>
+    <div id ="footer">
+		
+		
+    </div>
+	</div>
+	
+	<script>
+		let students = [];
+		let classSize = 9;
+
+		createStudents();
+		
+		
+		const engagementColours = ["grey", "#dd2c00",  "#ffa726", "#ffeb3b", "#b2ff59", "#64dd17"];
+		
+		const maxClassTime = 180;
+		
+		let timeStamp = 0;
+		
+		
+				
+		
+		updateEngagementIndicator();
+		
+		//do this every second
+		let engagementAvg = [];
+
+		updateEngagementAvg();
+		
+
+		timeStep();
+		var axis = [];
+
+		
+			for(let i = 0; i<maxClassTime; i++){
+				axis.push(i+1);
+			}
+			
+		
+chartMe();
+
+	function timeStep(){
+	
+	chartMe();
+	timeStamp++;
+	randomiseEngagement();
+	updateEngagementAvg();
+	updateEngagementIndicator();
+	chartMe();
+	if(timeStamp<maxClassTime+1){
+		setTimeout(timeStep, 1000);
+	}
+} 
+    </script>
+</body>
+</html>
